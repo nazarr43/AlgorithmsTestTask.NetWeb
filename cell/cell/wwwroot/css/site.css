@@ -1,0 +1,67 @@
+html {
+    font-size: 14px;
+}
+
+@media (min-width: 768px) {
+    html {
+        font-size: 16px;
+    }
+}
+
+.btn:focus,
+.btn:active:focus,
+.btn-link.nav-link:focus,
+.form-control:focus,
+.form-check-input:focus {
+    box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+    position: relative;
+    min-height: 100%;
+}
+
+body {
+    margin-bottom: 60px;
+    font-family: 'Arial', sans-serif;
+    background-color: #f8f9fa;
+    color: #495057;
+}
+
+#table-container {
+    margin: 20px;
+}
+
+#color-table {
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.cell {
+    width: 30px;
+    height: 30px;
+    border: 1px solid black;
+    cursor: pointer;
+}
+
+    .cell:hover {
+        background-color: #ddd;
+    }
+
+button {
+    background-color: #258cfb;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+    button:hover {
+        background-color: #1e70e4;
+    }
+
+#result {
+    font-size: 18px;
+    margin-top: 20px;
+}

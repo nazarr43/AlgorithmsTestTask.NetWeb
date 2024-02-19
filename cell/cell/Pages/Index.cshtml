@@ -1,0 +1,69 @@
+﻿@page
+@model IndexModel
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<link rel="stylesheet" href="~/css/site.css" />
+
+<div id="table-container">
+    <table id="color-table">
+        @for (int i = 0; i < 5; i++)
+        {
+            <tr>
+                @for (int j = 0; j < 5; j++)
+                {
+                    <td class="cell" onclick="changeColor(this)"></td>
+                }
+            </tr>
+        }
+    </table>
+</div>
+
+<button onclick="countSeparatedLeaves()">Натисни, щоб отримати відповідь :)</button>
+<p id="result">Кількість листочків: 1</p>
+
+
+<script>
+    var separatedLeavesCount = 0;
+
+    function changeColor(cell) {
+        if (cell.style.backgroundColor !== "black") {
+            cell.style.backgroundColor = "black";
+        }
+    }
+
+    function countSeparatedLeaves() {
+        separatedLeavesCount = 0;
+        var cells = document.querySelectorAll('.cell');
+        var visitedCells = new Set();
+
+        function explore(x, y) {
+            if (x < 0 || x >= 5 || y < 0 || y >= 5 || visitedCells.has(x + ',' + y)) {
+                return;
+            }
+
+            visitedCells.add(x + ',' + y);
+
+            var cell = document.querySelector('#color-table').rows[y].cells[x];
+            if (cell && cell.style.backgroundColor !== 'black') {
+                explore(x - 1, y);
+                explore(x + 1, y);
+                explore(x, y - 1);
+                explore(x, y + 1);
+            }
+        }
+
+        cells.forEach(function (cell) {
+            var x = cell.cellIndex;
+            var y = cell.parentNode.rowIndex;
+
+            if (cell.style.backgroundColor !== 'black' && !visitedCells.has(x + ',' + y)) {
+                explore(x, y);
+                separatedLeavesCount++;
+            }
+        });
+
+        document.getElementById('result').innerText = 'Кількість окремих листочків: ' + separatedLeavesCount;
+    }
+</script>
